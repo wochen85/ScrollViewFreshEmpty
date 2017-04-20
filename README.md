@@ -23,7 +23,7 @@ Using **ScrollViewFreshEmpty** in your app is very simple.
 ### Example
 
 ```
-import "UIScrollView+FreshEmpty.h"
+#import "UIScrollView+FreshEmpty.h"
 
 [self.tableView configFresh:[UIImage imageNamed:@"empty"] FreshTip:nil FreshTipColor:nil EmptyTip:@"暂无数据，请稍后重试" EmptyTipColor:nil TaskBlock:^{
         NSLog(@"刷新数据");
