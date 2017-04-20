@@ -1,2 +1,41 @@
 # ScrollViewFreshEmpty
 整合UIScrollView的下拉刷新、空页面显示，简化MJRefresh和DZNEmptyDataSet的使用。
+## Installation
+
+**ScrollViewFreshEmpty** can be installed using CocoaPods
+
+### CocoaPods
+
+Add the following to your **podfile**
+```
+pod 'ScrollViewFreshEmpty'
+```
+
+## Usage 
+
+Using **ScrollViewFreshEmpty** in your app is very simple.
+
+### example
+
+```
+import "UIScrollView+FreshEmpty.h"
+
+[self.tableView configFresh:[UIImage imageNamed:@"empty"] FreshTip:nil FreshTipColor:nil EmptyTip:@"暂无数据，请稍后重试" EmptyTipColor:nil TaskBlock:^{
+        NSLog(@"刷新数据");
+        
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            [self.tableView endFresh];
+        });
+    }];
+    [self.tableView beginFresh];
+    
+[self.tableView configLoadMore:@"向上拉加载更多" PullingTip:@"松开即可加载" FreshingTip:@"加载中，请稍候.." TipColor:nil TaskBlock:^{
+      NSLog(@"加载更多...");
+
+      dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+      dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+          [self.tableView endLoadMore:NO];
+      });
+  }];
+```
