@@ -1,0 +1,22 @@
+PODS:
+  - DZNEmptyDataSet (1.8.1)
+  - MJRefresh (3.1.12)
+  - ScrollViewFreshEmpty (0.0.7):
+    - DZNEmptyDataSet
+    - MJRefresh
+
+DEPENDENCIES:
+  - ScrollViewFreshEmpty (from `./`)
+
+EXTERNAL SOURCES:
+  ScrollViewFreshEmpty:
+    :path: ./
+
+SPEC CHECKSUMS:
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  ScrollViewFreshEmpty: 09c41157228a0aa3ecc28b53dae265a2e7e0914c
+
+PODFILE CHECKSUM: 92d058dc60478448351ef8c9f9e2b712a7b5f25b
+
+COCOAPODS: 1.1.1
