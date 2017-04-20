@@ -7,8 +7,8 @@
 //
 
 #import "UIScrollView+FreshEmpty.h"
-#import <MJRefresh/MJRefresh.h>
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "MJRefresh/MJRefresh.h"
+#import "DZNEmptyDataSet/UIScrollView+EmptyDataSet.h"
 
 @implementation UIScrollView (FreshEmpty)
 
