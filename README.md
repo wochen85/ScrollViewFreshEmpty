@@ -1,5 +1,11 @@
 # ScrollViewFreshEmpty
 整合UIScrollView的下拉刷新、空页面显示，简化MJRefresh和DZNEmptyDataSet的使用。
+
+## Requirements
+
+* iOS 7.0+
+* ARC
+
 ## Installation
 
 **ScrollViewFreshEmpty** can be installed using CocoaPods
@@ -10,12 +16,11 @@ Add the following to your **podfile**
 ```
 pod 'ScrollViewFreshEmpty'
 ```
-
 ## Usage 
 
 Using **ScrollViewFreshEmpty** in your app is very simple.
 
-### example
+### Example
 
 ```
 import "UIScrollView+FreshEmpty.h"
