@@ -3,7 +3,7 @@
 
 ## Requirements
 
-* iOS 7.0+
+* iOS 6.0+
 * ARC
 
 ## Installation
