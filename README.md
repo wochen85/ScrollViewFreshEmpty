@@ -1,4 +1,5 @@
 # ScrollViewFreshEmpty
+一行代码搞定下拉刷新组件和UIScrollView空页面展现。
 整合UIScrollView的下拉刷新、空页面显示，简化MJRefresh和DZNEmptyDataSet的使用。
 
 ## Requirements
