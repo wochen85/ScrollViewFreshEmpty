@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'ScrollViewFreshEmpty'
-  s.version          = '0.0.8'
+  s.version          = '0.0.9'
   s.summary          = '整合UIScrollView的下拉刷新、空页面显示，简化MJRefresh和DZNEmptyDataSet的使用。'
   s.homepage         = 'https://github.com/wochen85/ScrollViewFreshEmpty'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

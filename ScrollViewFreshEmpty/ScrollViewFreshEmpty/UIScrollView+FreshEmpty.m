@@ -118,7 +118,7 @@ static const char emptyTipColorKey = 'c';
 
 -(void) setEmptyTipColor:(UIColor *)emptyTipColor
 {
-    objc_setAssociatedObject(self, &emptyTipColorKey, emptyTipColor, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, &emptyTipColorKey, emptyTipColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(UIColor*) emptyTipColor
