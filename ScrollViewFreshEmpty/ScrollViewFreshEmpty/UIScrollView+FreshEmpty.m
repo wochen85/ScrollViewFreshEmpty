@@ -12,10 +12,6 @@
 
 @implementation UIScrollView (FreshEmpty)
 
-static const char emptyImgKey = 'i';
-static const char emptyTipKey = 't';
-static const char emptyTipColorKey = 'c';
-
 -(void) configFresh:(UIImage*)emptyImg FreshTip:(NSString*)freshTip FreshTipColor:(UIColor*)freshTipColor EmptyTip:(NSString*)emptyTip EmptyTipColor:(UIColor*)emptyTipColor TaskBlock:(void(^)())taskBlock
 {
     MJRefreshNormalHeader* header = [MJRefreshNormalHeader headerWithRefreshingBlock:taskBlock];
@@ -98,32 +94,32 @@ static const char emptyTipColorKey = 'c';
 
 -(void) setEmptyImg:(UIImage *)emptyImg
 {
-    objc_setAssociatedObject(self, &emptyImgKey, emptyImg, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(emptyImg), emptyImg, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(UIImage *)emptyImg
 {
-    return objc_getAssociatedObject(self, &emptyImgKey);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 -(void) setEmptyTip:(NSString *)emptyTip
 {
-    objc_setAssociatedObject(self, &emptyTipKey, emptyTip, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, @selector(emptyTip), emptyTip, OBJC_ASSOCIATION_COPY);
 }
 
 -(NSString*) emptyTip
 {
-    return objc_getAssociatedObject(self, &emptyTipKey);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 -(void) setEmptyTipColor:(UIColor *)emptyTipColor
 {
-    objc_setAssociatedObject(self, &emptyTipColorKey, emptyTipColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(emptyTipColor), emptyTipColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(UIColor*) emptyTipColor
 {
-    return objc_getAssociatedObject(self, &emptyTipColorKey);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 #pragma mark - DZNEmptyDataSetDelegate
