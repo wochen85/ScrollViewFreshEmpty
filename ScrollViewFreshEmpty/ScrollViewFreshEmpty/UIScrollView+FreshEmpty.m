@@ -12,7 +12,7 @@
 
 @implementation UIScrollView (FreshEmpty)
 
--(void) configFresh:(UIImage*)emptyImg FreshTip:(NSString*)freshTip FreshTipColor:(UIColor*)freshTipColor EmptyTip:(NSString*)emptyTip EmptyTipColor:(UIColor*)emptyTipColor TaskBlock:(void(^)())taskBlock
+-(void) configFresh:(UIImage*)emptyImg FreshTip:(NSString*)freshTip FreshTipColor:(UIColor*)freshTipColor EmptyTip:(NSString*)emptyTip EmptyTipColor:(UIColor*)emptyTipColor TaskBlock:(void(^)(void))taskBlock
 {
     MJRefreshNormalHeader* header = [MJRefreshNormalHeader headerWithRefreshingBlock:taskBlock];
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -38,7 +38,7 @@
     });
 }
 
--(void) configFresh:(void(^)())taskBlock
+-(void) configFresh:(void(^)(void))taskBlock
 {
     [self configFresh:nil FreshTip:nil FreshTipColor:nil EmptyTip:nil EmptyTipColor:nil TaskBlock:taskBlock];
 }
@@ -51,7 +51,7 @@
     }
 }
 
--(void) configLoadMore:(NSString*) idleTip PullingTip:(NSString*)pullingTip FreshingTip:(NSString*) freshingTip TipColor:(UIColor*)tipColor TaskBlock:(void(^)())taskBlock
+-(void) configLoadMore:(NSString*) idleTip PullingTip:(NSString*)pullingTip FreshingTip:(NSString*) freshingTip TipColor:(UIColor*)tipColor TaskBlock:(void(^)(void))taskBlock
 {
     MJRefreshBackNormalFooter* footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:taskBlock];
     [footer setTitle:idleTip?:@"上拉加载更多" forState:MJRefreshStateIdle];
@@ -64,7 +64,7 @@
     self.mj_footer = footer;
 }
 
--(void) configLoadMore:(void(^)())taskBlock
+-(void) configLoadMore:(void(^)(void))taskBlock
 {
     [self configLoadMore:nil PullingTip:nil FreshingTip:nil TipColor:nil TaskBlock:taskBlock];
 }
@@ -72,16 +72,11 @@
 -(void) endFresh
 {
     [self.mj_header endRefreshing];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self isKindOfClass:[UITableView class]])
-        {
-            [((UITableView*)self) reloadData];
-        }
-        else if ([self isKindOfClass:[UICollectionView class]])
-        {
-            [((UICollectionView*)self) reloadData];
-        }
-    });
+}
+
+-(void) resetNoMoreData
+{
+    [self.mj_footer resetNoMoreData];
 }
 
 -(void) endLoadMore:(BOOL) noMoreData
@@ -122,6 +117,16 @@
     return objc_getAssociatedObject(self, _cmd);
 }
 
+-(void) setHaveReload:(NSNumber*)haveReload
+{
+    objc_setAssociatedObject(self, @selector(haveReload), haveReload, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(NSNumber*) haveReload
+{
+    return objc_getAssociatedObject(self, _cmd);
+}
+
 #pragma mark - DZNEmptyDataSetDelegate
 - (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView
 {
@@ -131,15 +136,21 @@
 #pragma mark - DZNEmptyDataSetSource
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
 {
-    if (self.mj_header.isRefreshing)
-        return nil;
+//    if (!self.haveReload)
+//    {
+//        self.haveReload = @1;
+//        return nil;
+//    }
     return self.emptyImg;
 }
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
-    if (self.mj_header.isRefreshing || nil == self.emptyTip)
-        return nil;
+//    if (!self.haveReload || nil == self.emptyTip)
+//    {
+//        self.haveReload = @1;
+//        return nil;
+//    }
     NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
     paragraph.lineBreakMode = NSLineBreakByWordWrapping;
     paragraph.alignment = NSTextAlignmentCenter;

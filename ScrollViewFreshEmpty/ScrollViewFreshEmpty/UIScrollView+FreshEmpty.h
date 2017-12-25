@@ -11,17 +11,19 @@
 @interface UIScrollView (FreshEmpty)
 
 //刷新以及空页面
--(void) configFresh:(UIImage*)emptyImg FreshTip:(NSString*)freshTip FreshTipColor:(UIColor*)freshTipColor EmptyTip:(NSString*)emptyTip EmptyTipColor:(UIColor*)emptyTipColor TaskBlock:(void(^)())taskBlock;
--(void) configFresh:(void(^)())taskBlock;
+-(void) configFresh:(UIImage*)emptyImg FreshTip:(NSString*)freshTip FreshTipColor:(UIColor*)freshTipColor EmptyTip:(NSString*)emptyTip EmptyTipColor:(UIColor*)emptyTipColor TaskBlock:(void(^)(void))taskBlock;
+-(void) configFresh:(void(^)(void))taskBlock;
 -(void) beginFresh;
 -(void) endFresh;
+-(void) resetNoMoreData;
 
 //加载更多
--(void) configLoadMore:(NSString*) idleTip PullingTip:(NSString*)pullingTip FreshingTip:(NSString*) freshingTip TipColor:(UIColor*)tipColor TaskBlock:(void(^)())taskBlock;
--(void) configLoadMore:(void(^)())taskBlock;
+-(void) configLoadMore:(NSString*) idleTip PullingTip:(NSString*)pullingTip FreshingTip:(NSString*) freshingTip TipColor:(UIColor*)tipColor TaskBlock:(void(^)(void))taskBlock;
+-(void) configLoadMore:(void(^)(void))taskBlock;
 -(void) endLoadMore:(BOOL) noMoreData;
 
 @property (nonatomic, strong) UIImage* emptyImg;
 @property (nonatomic, copy) NSString* emptyTip;
 @property (nonatomic, strong) UIColor* emptyTipColor;
+@property (nonatomic) NSNumber* haveReload;
 @end

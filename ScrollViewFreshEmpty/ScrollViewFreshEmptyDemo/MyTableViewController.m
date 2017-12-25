@@ -10,15 +10,28 @@
 #import "UIScrollView+FreshEmpty.h"
 
 @interface MyTableViewController ()
-
+@property (nonatomic, strong)NSMutableArray<NSString*>* dataArr;
 @end
 
 @implementation MyTableViewController
+{
+    int loadTime;
+}
+
+-(NSMutableArray<NSString*>*)dataArr
+{
+    if (!_dataArr)
+    {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.tableFooterView = [UIView new];
+    loadTime = 0;
 
     [self.tableView configFresh:[UIImage imageNamed:@"empty"] FreshTip:nil FreshTipColor:nil EmptyTip:@"暂无数据，请稍后重试" EmptyTipColor:nil TaskBlock:^{
         NSLog(@"刷新数据");
@@ -26,6 +39,16 @@
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
             [self.tableView endFresh];
+            [self.tableView resetNoMoreData];
+            if (0 !=loadTime++)
+            {
+                [self.dataArr removeAllObjects];
+                for (int i=0; i<10; i++)
+                {
+                    [self.dataArr addObject:@"item"];
+                }
+            }
+            [self.tableView reloadData];
         });
     }];
     [self.tableView beginFresh];
@@ -35,7 +58,12 @@
         
         dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
         dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-            [self.tableView endLoadMore:NO];
+            [self.tableView endLoadMore:self.dataArr.count>=30?YES:NO];
+            for (int i=0; i<10; i++)
+            {
+                [self.dataArr addObject:@"item"];
+            }
+            [self.tableView reloadData];
         });
     }];
 }
@@ -48,22 +76,23 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.dataArr.count;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"fuck"];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"fuck"];
+    }
+    cell.textLabel.text = self.dataArr[indexPath.row];
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
