@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.dependency 'MJRefresh', '~> 3.1.15.1'
   s.dependency 'DZNEmptyDataSet', '~> 1.8.1'
 
-  s.source_files = 'ScrollViewFreshEmpty/*.{h,m}'
+  s.source_files = 'ScrollViewFreshEmpty/ScrollViewFreshEmpty/*.{h,m}'
 
 end
