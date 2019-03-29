@@ -40,7 +40,7 @@
 
 -(void) configFresh:(void(^)(void))taskBlock
 {
-    [self configFresh:nil FreshTip:nil FreshTipColor:nil EmptyTip:nil EmptyTipColor:nil TaskBlock:taskBlock];
+    [self configFresh:nil FreshTip:nil FreshTipColor:nil EmptyTip:@"无可用数据" EmptyTipColor:nil TaskBlock:taskBlock];
 }
 
 -(void) beginFresh
