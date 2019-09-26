@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B694A601EA89A7700DA5735 /* ScrollViewFreshEmpty.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6B694A5F1EA89A7700DA5735 /* ScrollViewFreshEmpty.podspec */; };
 		6B694A6D1EA89C6C00DA5735 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B694A631EA89C6C00DA5735 /* AppDelegate.m */; };
 		6B694A6E1EA89C6C00DA5735 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B694A641EA89C6C00DA5735 /* Assets.xcassets */; };
 		6B694A6F1EA89C6C00DA5735 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B694A651EA89C6C00DA5735 /* LaunchScreen.storyboard */; };
@@ -23,7 +22,6 @@
 		512B004EE4D74A0895AFEFDA /* libPods-ScrollViewFreshEmpty.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrollViewFreshEmpty.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68435E57F7FB951975AEE9AA /* Pods-ScrollViewFreshEmpty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollViewFreshEmpty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScrollViewFreshEmpty/Pods-ScrollViewFreshEmpty.debug.xcconfig"; sourceTree = "<group>"; };
 		6B694A451EA88B7100DA5735 /* ScrollViewFreshEmpty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollViewFreshEmpty.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B694A5F1EA89A7700DA5735 /* ScrollViewFreshEmpty.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ScrollViewFreshEmpty.podspec; sourceTree = "<group>"; };
 		6B694A621EA89C6C00DA5735 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B694A631EA89C6C00DA5735 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6B694A641EA89C6C00DA5735 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,7 +50,6 @@
 		6B694A3C1EA88B7100DA5735 = {
 			isa = PBXGroup;
 			children = (
-				6B694A5F1EA89A7700DA5735 /* ScrollViewFreshEmpty.podspec */,
 				6B694A611EA89C6C00DA5735 /* ScrollViewFreshEmptyDemo */,
 				6B694A461EA88B7100DA5735 /* Products */,
 				ECF955B9B54F0C223D64C2B7 /* Pods */,
@@ -121,7 +118,6 @@
 				6B694A411EA88B7100DA5735 /* Sources */,
 				6B694A421EA88B7100DA5735 /* Frameworks */,
 				6B694A431EA88B7100DA5735 /* Resources */,
-				3E025B3A0240D7902050CF5C /* [CP] Embed Pods Frameworks */,
 				828202791BA74D7346010CB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -154,6 +150,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -174,7 +171,6 @@
 			files = (
 				6B694A6F1EA89C6C00DA5735 /* LaunchScreen.storyboard in Resources */,
 				6B694A6E1EA89C6C00DA5735 /* Assets.xcassets in Resources */,
-				6B694A601EA89A7700DA5735 /* ScrollViewFreshEmpty.podspec in Resources */,
 				6B694A711EA89C6C00DA5735 /* Info.plist in Resources */,
 				6B694A7D1EA8A0BF00DA5735 /* empty@2x.png in Resources */,
 				6B694A701EA89C6C00DA5735 /* Main.storyboard in Resources */,
@@ -184,37 +180,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3E025B3A0240D7902050CF5C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewFreshEmpty/Pods-ScrollViewFreshEmpty-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		828202791BA74D7346010CB9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewFreshEmpty/Pods-ScrollViewFreshEmpty-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ScrollViewFreshEmpty/Pods-ScrollViewFreshEmpty-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScrollViewFreshEmpty/Pods-ScrollViewFreshEmpty-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScrollViewFreshEmpty/Pods-ScrollViewFreshEmpty-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CDBF93C49C863C68ADBDBE9E /* [CP] Check Pods Manifest.lock */ = {

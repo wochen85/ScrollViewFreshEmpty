@@ -66,6 +66,13 @@
             [self.tableView reloadData];
         });
     }];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(refresh)];
+}
+
+-(void)refresh
+{
+    [self.tableView beginFresh];
 }
 
 - (void)didReceiveMemoryWarning {

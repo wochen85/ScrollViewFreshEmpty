@@ -27,7 +27,7 @@
     self.mj_header = header;
     
     self.emptyImg = emptyImg;
-    self.emptyTip = emptyTip;
+    self.emptyTip = emptyTip?:@"暂无数据";
     self.emptyTipColor = emptyTipColor;
     
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -47,6 +47,14 @@
 {
     if (self.mj_header)
     {
+        //滚动比较多时，刷新时滚动到头顶
+        if ([self isKindOfClass:[UITableView class]]) {
+            UITableView *tableView = (UITableView*)self;
+            NSIndexPath *index = [NSIndexPath indexPathForRow:0 inSection:0];
+            if ([tableView numberOfSections] > 0 && [tableView numberOfRowsInSection:0] > 0) {
+                [tableView scrollToRowAtIndexPath:index atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            }
+        }
         [self.mj_header beginRefreshing];
     }
 }
@@ -72,6 +80,25 @@
 -(void) endFresh
 {
     [self.mj_header endRefreshing];
+    [self tryReload];
+}
+
+-(void) tryReload
+{
+    SEL selector = NSSelectorFromString(@"reloadData");
+    if ([self respondsToSelector:selector])
+    {
+        ((void (*)(id, SEL))[self methodForSelector:selector])(self, selector);
+    }
+}
+
+-(void) endFresh:(BOOL) noMoreData
+{
+    [self endFresh];
+    if (noMoreData)
+        [self.mj_footer endRefreshingWithNoMoreData];
+    else
+        [self resetNoMoreData];
 }
 
 -(void) resetNoMoreData
@@ -81,6 +108,7 @@
 
 -(void) endLoadMore:(BOOL) noMoreData
 {
+    [self tryReload];
     if (noMoreData)
         [self.mj_footer endRefreshingWithNoMoreData];
     else

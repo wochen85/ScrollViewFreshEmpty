@@ -15,6 +15,7 @@
 -(void) configFresh:(void(^)(void))taskBlock;
 -(void) beginFresh;
 -(void) endFresh;
+-(void) endFresh:(BOOL) noMoreData;
 -(void) resetNoMoreData;
 
 //加载更多
@@ -23,7 +24,7 @@
 -(void) endLoadMore:(BOOL) noMoreData;
 
 @property (nonatomic, strong) UIImage* emptyImg;
-@property (nonatomic, copy) NSString* emptyTip;
+@property (nonatomic, copy) NSString* emptyTip; //空提示，默认为“暂无数据”
 @property (nonatomic, strong) UIColor* emptyTipColor;
 @property (nonatomic) NSNumber* haveReload;
 @end
